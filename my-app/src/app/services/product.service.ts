@@ -17,11 +17,11 @@ export class ProductService {
   getProducts(): Observable<Product[]> {
     var uppercase = new UpperCasePipe();
     return this.http.get<Product[]>(this.productsUrl, httpOptions)
-    .map((productArray) => {
-      productArray.map((p) => {
+    .map((products) => {
+      products.map((p) => {
         p.title = uppercase.transform(p.title);
       });
-      return productArray;
+      return products;
     });
   }
 

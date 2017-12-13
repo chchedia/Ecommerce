@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { BasketComponent } from './basket/basket.component';
 import { AppRoutingModule } from './/app-routing.module';
 
+
 @NgModule({
   declarations: [
     Application,
