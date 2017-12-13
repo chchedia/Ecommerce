@@ -2,6 +2,7 @@ import { Product } from '../model/product';
 import { Observable } from 'rxjs/Rx';
 import { CustomerService } from '../services/customer.service';
 import { Component, OnInit } from '@angular/core';
+import { TrierPipe} from '../trier.pipe';
 
 @Component({
   selector: 'app-basket',

@@ -1,4 +1,19 @@
 <app-menu></app-menu>
 <div class="container">
-  {{productsBasket | json}}
+  <table>
+    <tr>
+      <th>Name </th>
+      <th>Price </th>
+    </tr>
+    <ng-container *ngFor="let data of productsBasket">
+      <tr>
+        <td>
+          <h4>{{data.title}}</h4>
+        </td>
+        <td>
+          <h4>{{data.price| currency: 'EUR': 'symbol' : '1.2-2'}}</h4>
+        </td>
+      </tr>
+    </ng-container>
+  </table>
 </div>
