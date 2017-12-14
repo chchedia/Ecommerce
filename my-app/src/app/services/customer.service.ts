@@ -10,6 +10,7 @@ const httpOptions = {
 @Injectable()
 export class CustomerService {
   private basketUrl = 'http://localhost:8080/rest/basket';
+  private checkoutUrl = 'http://localhost:8080/rest/basket/confirm';
   constructor(private http: HttpClient) { }
   panierProdcut: Observable<Product[]>;
 
@@ -23,6 +24,10 @@ export class CustomerService {
 
   getTotal(): Observable<Product[]> {
     return this.http.get<Product[]>(this.basketUrl, httpOptions);
+  }
+
+  checkout(customer: Customer): Observable<any> {
+    return this.http.post<any>(this.checkoutUrl, customer, httpOptions);
   }
 
 }

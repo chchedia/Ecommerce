@@ -11,6 +11,7 @@ import { ProductComponent } from './product/product.component';
 import { HomeComponent } from './home/home.component';
 import { BasketComponent } from './basket/basket.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { FormsModule }    from '@angular/forms';
 
 
 @NgModule({
@@ -20,10 +21,12 @@ import { AppRoutingModule } from './/app-routing.module';
     ProductComponent,
     TrierPipe,
     HomeComponent,
-    BasketComponent
+    BasketComponent,
+    
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule],
   providers: [

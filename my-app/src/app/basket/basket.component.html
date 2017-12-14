@@ -17,3 +17,12 @@
     </ng-container>
   </table>
 </div>
+<form class="container" #myForm="ngForm" (submit)="checkout(customerName.value, customerAdd.value,customerCC.value)">
+  Name:
+  <input type="text" #customerName required/>
+  Address:
+  <input type="text" #customerAdd />
+  Credit Card:
+  <input type="number" #customerCC  required/>
+  <button type="submit">Submit</button>
+</form>
