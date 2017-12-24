@@ -1,4 +1,39 @@
 <app-menu></app-menu>
 <div class="container">
-  {{productsBasket | json}}
+  <table>
+    <tr>
+      <th>Name </th>
+      <th>Price </th>
+    </tr>
+    <ng-container *ngFor="let data of productsBasket">
+      <tr>
+        <td>
+          <h4>{{data.title}}</h4>
+        </td>
+        <td>
+          <h4>{{data.price| currency: 'EUR': 'symbol' : '1.2-2'}}</h4>
+        </td>
+      </tr>
+    </ng-container>
+  </table>
 </div>
+
+<form class="container" novalidate #myForm="ngForm" (ngSubmit)="checkout()">
+  <div class="form-group"  [ngClass]= "{'has-error': name.invalid && name.touched}">
+    <label class="control-label" for="name">Name:</label>
+    <input class="form-control" type="text" [(ngModel)]="currentCustomer.name" name="name" #name="ngModel" required />
+  </div>
+  <div class="form-group" [ngClass]= "{'has-error': adr.invalid && adr.touched}" >
+    <label class="control-label">Address:</label>
+    <textarea type="text" class="form-control" [(ngModel)]="currentCustomer.address" name="address" #adr="ngModel" required></textarea>
+  </div>
+  <div class="form-group" [ngClass]= "{'has-error': cb.invalid && cb.touched}">
+    <label class="control-label">Credit Card:</label>
+    <input type="text" class="form-control" [(ngModel)]="currentCustomer.creditCard" name="cb" #cb="ngModel" pattern="[0-9]{3}-[0-9]{3}" required/>
+    <small [hidden]="cb.valid || cb.untouched">
+      Credit Card is required and format should be
+      <i>123-456</i>.
+    </small>
+  </div>
+  <button type="submit" [disabled]="myForm.invalid">Submit</button>
+</form>
