@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { CustomerService } from '../services/customer.service';
 import { Component, OnInit } from '@angular/core';
 import { TrierPipe } from '../trier.pipe';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-basket',
@@ -11,10 +12,9 @@ import { TrierPipe } from '../trier.pipe';
   styleUrls: ['./basket.component.css']
 })
 export class BasketComponent implements OnInit {
+  public currentCustomer= new Customer();
   productsBasket: Product[];
-  customers: Customer[];
-
-  constructor(public custumoerService: CustomerService) { }
+  constructor(public custumoerService: CustomerService, private location: Location) { }
 
   ngOnInit() {
     this.getBasketProduct();
@@ -24,9 +24,10 @@ export class BasketComponent implements OnInit {
     this.custumoerService.getBasketProduct()
       .subscribe(products => { this.productsBasket = products; });
   }
-  checkout(customerName: string, customerAdd: string, customerCC: string): void {
-    var customer: Customer = new Customer(customerName.trim(), customerAdd.trim(), customerCC.trim());
-    this.custumoerService.checkout(customer)
-      .subscribe();
+
+  checkout(): void {
+    this.custumoerService.checkout(this.currentCustomer).subscribe(res => {
+      this.location.back();
+    });
   }
 }
